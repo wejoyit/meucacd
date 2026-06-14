@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CACD 2026 — Plano de Estudos</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0f14;
+  --surface: #13161e;
+  --surface2: #1a1e28;
+  --surface3: #222736;
+  --border: #2a3045;
+  --border2: #333d57;
+  --text: #e8eaf0;
+  --text2: #9aa0b8;
+  --text3: #5c6480;
+  --accent: #4f8ef7;
+  --accent2: #7c5ff7;
+
+  /* Cores por matéria */
+  --lp:   #3b82f6;
+  --hi:   #f59e0b;
+  --hm:   #ef4444;
+  --geo:  #10b981;
+  --ing:  #8b5cf6;
+  --pi:   #06b6d4;
+  --eco:  #f97316;
+  --dir:  #ec4899;
+  --esp:  #a78bfa;
+  --red:  #64748b;
+
+  /* status */
+  --c-inicio: #3b82f6;
+  --c-revisar: #f59e0b;
+  --c-finalizado: #10b981;
+
+  /* incidência */
+  --inc-alta: #ef4444;
+  --inc-media: #f59e0b;
+  --inc-baixa: #6b7280;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ── HEADER ─────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 28px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+}
+header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+header h1 span { color: var(--accent); }
+.header-sub { color: var(--text3); font-size: 12px; margin-top: 2px; }
+header .spacer { flex: 1; }
+.days-badge {
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ── TABS ────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  padding: 0 28px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+.tab-bar::-webkit-scrollbar { height: 0; }
+.tab-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text3);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 12px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .2s, border-color .2s;
+}
+.tab-btn:hover { color: var(--text2); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ── MAIN ────────────────────────────────── */
+main { padding: 28px; max-width: 1400px; margin: 0 auto; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── MATÉRIAS CORES ─────────────────────── */
+.tag-lp   { background: rgba(59,130,246,.18);  color: #60a5fa; border: 1px solid rgba(59,130,246,.3); }
+.tag-hi   { background: rgba(245,158,11,.18);  color: #fbbf24; border: 1px solid rgba(245,158,11,.3); }
+.tag-hm   { background: rgba(239,68,68,.18);   color: #f87171; border: 1px solid rgba(239,68,68,.3); }
+.tag-geo  { background: rgba(16,185,129,.18);  color: #34d399; border: 1px solid rgba(16,185,129,.3); }
+.tag-ing  { background: rgba(139,92,246,.18);  color: #a78bfa; border: 1px solid rgba(139,92,246,.3); }
+.tag-pi   { background: rgba(6,182,212,.18);   color: #22d3ee; border: 1px solid rgba(6,182,212,.3); }
+.tag-eco  { background: rgba(249,115,22,.18);  color: #fb923c; border: 1px solid rgba(249,115,22,.3); }
+.tag-dir  { background: rgba(236,72,153,.18);  color: #f472b6; border: 1px solid rgba(236,72,153,.3); }
+.tag-esp  { background: rgba(167,139,250,.18); color: #c4b5fd; border: 1px solid rgba(167,139,250,.3); }
+
+.dot-lp  { background: var(--lp); }
+.dot-hi  { background: var(--hi); }
+.dot-hm  { background: var(--hm); }
+.dot-geo { background: var(--geo); }
+.dot-ing { background: var(--ing); }
+.dot-pi  { background: var(--pi); }
+.dot-eco { background: var(--eco); }
+.dot-dir { background: var(--dir); }
+.dot-esp { background: var(--esp); }
+
+.tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: .4px;
+  white-space: nowrap;
+}
+.dot {
+  width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+}
+.tag-inc-alta   { background: rgba(239,68,68,.15);  color: #f87171; border: 1px solid rgba(239,68,68,.25); }
+.tag-inc-media  { background: rgba(245,158,11,.15); color: #fbbf24; border: 1px solid rgba(245,158,11,.25); }
+.tag-inc-baixa  { background: rgba(107,114,128,.15);color: #9ca3af; border: 1px solid rgba(107,114,128,.25); }
+
+/* ── BOTÕES ──────────────────────────────── */
+.btn {
+  font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 12px;
+  padding: 7px 14px; border-radius: 8px; cursor: pointer; transition: all .15s;
+  border: 1px solid transparent; display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #3b7de8; }
+.btn-ghost { background: none; border-color: var(--border2); color: var(--text2); }
+.btn-ghost:hover { background: var(--surface2); color: var(--text); }
+.btn-danger { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.3); color: #f87171; }
+.btn-danger:hover { background: rgba(239,68,68,.2); }
+.btn-sm { font-size: 11px; padding: 5px 10px; }
+
+/* ── CARD ────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.card-sm { padding: 14px 16px; }
+.section-title {
+  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700;
+  letter-spacing: -.3px; margin-bottom: 4px;
+}
+.section-sub { color: var(--text3); font-size: 13px; margin-bottom: 20px; }
+
+/* ══════════════════════════════════════════
+   ABA 1: PLANEJAMENTO SEMANAL
+══════════════════════════════════════════ */
+.week-nav {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.week-select-wrap { display: flex; gap: 6px; align-items: center; }
+select {
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  background: var(--surface2); color: var(--text);
+  border: 1px solid var(--border2); border-radius: 8px;
+  padding: 8px 12px; cursor: pointer; outline: none;
+  -webkit-appearance: none; appearance: none;
+}
+select:focus { border-color: var(--accent); }
+
+/* Toggle view */
+.view-toggle {
+  display: flex; gap: 4px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 3px;
+}
+.view-toggle button {
+  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
+  background: none; border: none; color: var(--text3);
+  padding: 5px 12px; border-radius: 6px; cursor: pointer; transition: all .15s;
+}
+.view-toggle button.active { background: var(--surface3); color: var(--text); }
+
+/* Days grid */
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+@media(max-width:1100px){ .days-grid { grid-template-columns: repeat(3,1fr); } }
+@media(max-width:700px){ .days-grid { grid-template-columns: 1fr 1fr; } }
+
+.day-col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 300px;
+}
+.day-col.drag-over { border-color: var(--accent); background: rgba(79,142,247,.05); }
+
+.day-header {
+  background: var(--surface2);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.day-name {
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .6px; color: var(--text2);
+}
+.day-date { font-size: 11px; color: var(--text3); }
+
+.day-body { padding: 10px; display: flex; flex-direction: column; gap: 8px; min-height: 260px; }
+
+/* Tópico card */
+.topic-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: grab;
+  transition: box-shadow .15s, border-color .15s;
+  position: relative;
+  border-left: 3px solid transparent;
+}
+.topic-card:active { cursor: grabbing; }
+.topic-card.dragging { opacity: .5; }
+.topic-card:hover { border-color: var(--border2); box-shadow: 0 4px 16px rgba(0,0,0,.3); }
+
+.topic-card.status-finalizado { border-left-color: var(--c-finalizado); }
+.topic-card.status-revisar    { border-left-color: var(--c-revisar); }
+.topic-card.status-iniciado   { border-left-color: var(--c-inicio); }
+.topic-card.status-pendente   { border-left-color: var(--border2); }
+
+.topic-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 7px; align-items: center; }
+.topic-title {
+  font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.4;
+}
+.topic-controls {
+  display: flex; gap: 6px; flex-wrap: wrap; align-items: center; justify-content: space-between;
+}
+.topic-actions { display: flex; gap: 4px; }
+.icon-btn {
+  background: none; border: none; cursor: pointer; color: var(--text3);
+  padding: 3px 5px; border-radius: 5px; font-size: 13px; transition: all .15s;
+}
+.icon-btn:hover { background: var(--surface3); color: var(--text); }
+.icon-btn.delete:hover { color: #f87171; background: rgba(239,68,68,.1); }
+
+/* Status select */
+.status-sel {
+  font-family: 'DM Sans', sans-serif; font-size: 10px;
+  border-radius: 6px; padding: 3px 6px;
+  border: 1px solid var(--border2);
+  background: var(--surface3); color: var(--text2);
+  cursor: pointer; outline: none;
+}
+.method-sel {
+  font-family: 'DM Sans', sans-serif; font-size: 10px;
+  border-radius: 6px; padding: 3px 6px;
+  border: 1px solid var(--border2);
+  background: var(--surface3); color: var(--text2);
+  cursor: pointer; outline: none;
+}
+
+/* Kanban view */
+.kanban-view { display: none; }
+.kanban-view.active { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px; }
+.kanban-col {
+  min-width: 280px; max-width: 320px; flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+}
+.kanban-col-header {
+  padding: 12px 16px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.kanban-col-title {
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
+}
+.count-badge {
+  background: var(--surface3); border: 1px solid var(--border2);
+  border-radius: 20px; padding: 1px 8px;
+  font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600; color: var(--text3);
+}
+.kanban-body { padding: 10px; display: flex; flex-direction: column; gap: 8px; min-height: 200px; }
+.kanban-body.drag-over { background: rgba(79,142,247,.04); }
+
+/* Add topic */
+.add-topic-form {
+  background: var(--surface2);
+  border: 1px dashed var(--border2);
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 6px;
+  display: none;
+}
+.add-topic-form.open { display: block; }
+.form-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+input[type=text], textarea {
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  background: var(--surface3); color: var(--text);
+  border: 1px solid var(--border2); border-radius: 8px;
+  padding: 8px 10px; outline: none; transition: border-color .15s;
+  width: 100%;
+}
+input[type=text]:focus, textarea:focus { border-color: var(--accent); }
+textarea { resize: vertical; min-height: 60px; }
+
+/* ══════════════════════════════════════════
+   ABA 2: CICLOS
+══════════════════════════════════════════ */
+.cycles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr)); gap: 16px; }
+.cycle-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+}
+.cycle-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px; background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+.cycle-num {
+  font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+  color: var(--text3); text-transform: uppercase; letter-spacing: .5px;
+}
+.cycle-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700; flex: 1;
+}
+.cycle-range { font-size: 11px; color: var(--text3); }
+.cycle-body { padding: 12px 16px; }
+.cycle-day { display: flex; flex-direction: column; gap: 6px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.cycle-day:last-child { border-bottom: none; }
+.cycle-day-name {
+  font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+  color: var(--text3); text-transform: uppercase; letter-spacing: .5px;
+}
+.cycle-subjects { display: flex; gap: 6px; flex-wrap: wrap; }
+.cycle-time { font-size: 11px; color: var(--text3); }
+
+/* ══════════════════════════════════════════
+   ABA 3: MATÉRIAS
+══════════════════════════════════════════ */
+.mat-tabs {
+  display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 20px;
+}
+.mat-tab-btn {
+  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface); color: var(--text2);
+  cursor: pointer; transition: all .15s;
+}
+.mat-tab-btn:hover { border-color: var(--border2); color: var(--text); }
+.mat-tab-btn.active { color: #fff; border-color: transparent; }
+
+.mat-panel { display: none; }
+.mat-panel.active { display: block; }
+
+.mat-header {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 12px;
+  margin-bottom: 16px;
+}
+.mat-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.mat-info h3 { font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.mat-info p { font-size: 12px; color: var(--text3); line-height: 1.5; }
+.mat-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
+.topics-list { display: flex; flex-direction: column; gap: 8px; }
+.topic-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px;
+}
+.topic-num {
+  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700;
+  color: var(--text3); min-width: 28px; padding-top: 1px;
+}
+.topic-row-text { flex: 1; font-size: 13px; line-height: 1.5; }
+.topic-row-title { font-weight: 500; margin-bottom: 3px; }
+.topic-row-sub { font-size: 12px; color: var(--text3); }
+.topic-row-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 6px; }
+
+/* ══════════════════════════════════════════
+   ABA 4: ESTATÍSTICAS / KANBAN
+══════════════════════════════════════════ */
+.stats-top { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 14px; margin-bottom: 24px; }
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 20px;
+}
+.stat-label { font-size: 12px; color: var(--text3); margin-bottom: 6px; }
+.stat-value {
+  font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 800;
+  letter-spacing: -1px; color: var(--text);
+}
+.stat-value.green { color: var(--c-finalizado); }
+.stat-value.yellow { color: var(--c-revisar); }
+.stat-value.blue { color: var(--c-inicio); }
+
+.progress-bar-wrap { margin-top: 8px; background: var(--surface3); border-radius: 99px; height: 5px; overflow: hidden; }
+.progress-bar { height: 100%; border-radius: 99px; background: var(--accent); transition: width .4s; }
+
+.materia-progress { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.mp-row { display: flex; align-items: center; gap: 12px; }
+.mp-label { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; min-width: 140px; }
+.mp-bar-wrap { flex: 1; background: var(--surface3); border-radius: 99px; height: 8px; overflow: hidden; }
+.mp-bar { height: 100%; border-radius: 99px; transition: width .4s; }
+.mp-pct { font-size: 12px; color: var(--text3); min-width: 36px; text-align: right; }
+
+.stats-kanban { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px; }
+.stats-kanban-col {
+  min-width: 260px; flex-shrink: 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+}
+.stats-kanban-header {
+  padding: 12px 16px; background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
+}
+.stats-kanban-body { padding: 10px; display: flex; flex-direction: column; gap: 6px; max-height: 500px; overflow-y: auto; }
+.stats-topic-item {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; font-size: 12px;
+}
+
+/* ══════════════════════════════════════════
+   ABA 5: TEMPO DE ESTUDOS
+══════════════════════════════════════════ */
+.time-controls {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.time-table-wrap { overflow-x: auto; }
+.time-table {
+  width: 100%; border-collapse: collapse; min-width: 700px;
+}
+.time-table th {
+  font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .5px;
+  color: var(--text3); padding: 10px 14px; text-align: left;
+  background: var(--surface2); border-bottom: 1px solid var(--border);
+}
+.time-table td {
+  padding: 8px 14px; border-bottom: 1px solid var(--border);
+  font-size: 13px; vertical-align: middle;
+}
+.time-table tr:hover td { background: rgba(255,255,255,.02); }
+.time-table input[type=text] {
+  width: 70px; font-size: 12px; text-align: center; padding: 4px 6px;
+  background: var(--surface3); border: 1px solid var(--border2);
+  border-radius: 6px; color: var(--text);
+}
+.time-table input[type=number] {
+  width: 58px; font-size: 12px; text-align: center; padding: 4px 6px;
+  background: var(--surface3); border: 1px solid var(--border2);
+  border-radius: 6px; color: var(--text);
+}
+.pct-cell { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700; }
+.pct-red    { color: #f87171; }
+.pct-yellow { color: #fbbf24; }
+.pct-green  { color: #34d399; }
+
+.time-summary {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 14px; margin-top: 20px;
+}
+
+/* ── MODAL ───────────────────────────────── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.7); z-index: 200;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: 16px; padding: 28px; max-width: 460px; width: 90%; max-height: 90vh; overflow-y: auto;
+}
+.modal h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+.form-label { font-size: 12px; color: var(--text3); margin-bottom: 5px; font-family: 'Outfit', sans-serif; font-weight: 600; letter-spacing: .3px; }
+.form-group { margin-bottom: 14px; }
+
+/* ── CONFIRM DIALOG ──────────────────────── */
+.confirm-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.7); z-index: 300;
+  align-items: center; justify-content: center;
+}
+.confirm-overlay.open { display: flex; }
+.confirm-box {
+  background: var(--surface); border: 1px solid rgba(239,68,68,.4);
+  border-radius: 14px; padding: 24px; max-width: 360px; width: 90%; text-align: center;
+}
+.confirm-box h4 { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.confirm-box p { font-size: 13px; color: var(--text3); margin-bottom: 20px; }
+.confirm-actions { display: flex; gap: 8px; justify-content: center; }
+
+/* ── SCROLL ──────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div>
+    <h1>CACD <span>2026</span></h1>
+    <div class="header-sub">Plano de Estudos · 180 dias</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="days-badge" id="daysRemaining">— dias restantes</div>
+</header>
+
+<!-- TABS -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('planejamento')">📅 Planejamento Semanal</button>
+  <button class="tab-btn" onclick="switchTab('ciclos')">🔄 Ciclos de Estudo</button>
+  <button class="tab-btn" onclick="switchTab('materias')">📚 Matérias</button>
+  <button class="tab-btn" onclick="switchTab('stats')">📊 Estatísticas</button>
+  <button class="tab-btn" onclick="switchTab('tempo')">⏱ Tempo de Estudos</button>
+</div>
+
+<!-- MAIN -->
+<main>
+
+<!-- ══════════ ABA 1: PLANEJAMENTO ══════════ -->
+<div id="tab-planejamento" class="tab-panel active">
+  <div class="week-nav">
+    <div class="week-select-wrap">
+      <label class="form-label" style="margin:0">Semana:</label>
+      <select id="weekSelect" onchange="renderWeek()"></select>
+    </div>
+    <div class="view-toggle">
+      <button class="active" id="viewDays" onclick="setView('days')">Dias da semana</button>
+      <button id="viewKanban" onclick="setView('kanban')">Kanban</button>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary btn-sm" onclick="openAddModal()">+ Adicionar tópico</button>
+  </div>
+
+  <!-- Days view -->
+  <div id="daysView" class="days-grid"></div>
+
+  <!-- Kanban view -->
+  <div id="kanbanView" class="kanban-view">
+    <div class="kanban-col">
+      <div class="kanban-col-header">
+        <span class="kanban-col-title" style="color:var(--text3)">⬜ Pendente</span>
+        <span class="count-badge" id="k-cnt-pendente">0</span>
+      </div>
+      <div class="kanban-body" id="k-pendente" data-status="pendente"
+        ondragover="e.preventDefault();this.classList.add('drag-over')"
+        ondragleave="this.classList.remove('drag-over')"
+        ondrop="dropKanban(event,'pendente')"></div>
+    </div>
+    <div class="kanban-col">
+      <div class="kanban-col-header">
+        <span class="kanban-col-title" style="color:var(--c-inicio)">🔵 Iniciado</span>
+        <span class="count-badge" id="k-cnt-iniciado">0</span>
+      </div>
+      <div class="kanban-body" id="k-iniciado" data-status="iniciado"
+        ondragover="e.preventDefault();this.classList.add('drag-over')"
+        ondragleave="this.classList.remove('drag-over')"
+        ondrop="dropKanban(event,'iniciado')"></div>
+    </div>
+    <div class="kanban-col">
+      <div class="kanban-col-header">
+        <span class="kanban-col-title" style="color:var(--c-revisar)">🟡 Revisar</span>
+        <span class="count-badge" id="k-cnt-revisar">0</span>
+      </div>
+      <div class="kanban-body" id="k-revisar" data-status="revisar"
+        ondragover="e.preventDefault();this.classList.add('drag-over')"
+        ondragleave="this.classList.remove('drag-over')"
+        ondrop="dropKanban(event,'revisar')"></div>
+    </div>
+    <div class="kanban-col">
+      <div class="kanban-col-header">
+        <span class="kanban-col-title" style="color:var(--c-finalizado)">✅ Finalizado</span>
+        <span class="count-badge" id="k-cnt-finalizado">0</span>
+      </div>
+      <div class="kanban-body" id="k-finalizado" data-status="finalizado"
+        ondragover="e.preventDefault();this.classList.add('drag-over')"
+        ondragleave="this.classList.remove('drag-over')"
+        ondrop="dropKanban(event,'finalizado')"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ABA 2: CICLOS ══════════ -->
+<div id="tab-ciclos" class="tab-panel">
+  <div class="section-title">Ciclos de Estudo</div>
+  <div class="section-sub">Distribuição de disciplinas em ciclos semanais de 5 dias (Seg–Sáb), considerando 2–2h30 diárias e carga por relevância. Língua Portuguesa e Economia nunca aparecem no mesmo dia.</div>
+  <div class="cycles-grid" id="cyclesGrid"></div>
+</div>
+
+<!-- ══════════ ABA 3: MATÉRIAS ══════════ -->
+<div id="tab-materias" class="tab-panel">
+  <div class="section-title">Conteúdo Programático</div>
+  <div class="section-sub">Todos os tópicos do edital, conforme o Anexo III, com incidência estimada nas provas recentes do CACD.</div>
+
+  <div class="mat-tabs" id="matTabs"></div>
+  <div id="matPanels"></div>
+</div>
+
+<!-- ══════════ ABA 4: ESTATÍSTICAS ══════════ -->
+<div id="tab-stats" class="tab-panel">
+  <div class="section-title">Progresso & Estatísticas</div>
+  <div class="section-sub">Atualizado automaticamente ao marcar tópicos como finalizados.</div>
+
+  <div class="stats-top">
+    <div class="stat-card">
+      <div class="stat-label">Total de tópicos</div>
+      <div class="stat-value" id="s-total">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Finalizados</div>
+      <div class="stat-value green" id="s-fin">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Para revisar</div>
+      <div class="stat-value yellow" id="s-rev">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Iniciados</div>
+      <div class="stat-value blue" id="s-ini">0</div>
+    </div>
+    <div class="stat-card" style="grid-column:span 2">
+      <div class="stat-label">Progresso geral</div>
+      <div class="stat-value" id="s-pct">0%</div>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="s-bar" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="section-title" style="font-size:15px;margin-bottom:12px">Progresso por matéria</div>
+  <div class="materia-progress" id="materiaProgress"></div>
+
+  <div class="section-title" style="font-size:15px;margin:20px 0 12px">Kanban de acompanhamento</div>
+  <div class="stats-kanban" id="statsKanban">
+    <div class="stats-kanban-col">
+      <div class="stats-kanban-header" style="color:var(--text3)">⬜ Pendente</div>
+      <div class="stats-kanban-body" id="sk-pendente"></div>
+    </div>
+    <div class="stats-kanban-col">
+      <div class="stats-kanban-header" style="color:var(--c-inicio)">🔵 Iniciado</div>
+      <div class="stats-kanban-body" id="sk-iniciado"></div>
+    </div>
+    <div class="stats-kanban-col">
+      <div class="stats-kanban-header" style="color:var(--c-revisar)">🟡 Revisar</div>
+      <div class="stats-kanban-body" id="sk-revisar"></div>
+    </div>
+    <div class="stats-kanban-col">
+      <div class="stats-kanban-header" style="color:var(--c-finalizado)">✅ Finalizado</div>
+      <div class="stats-kanban-body" id="sk-finalizado"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ABA 5: TEMPO ══════════ -->
+<div id="tab-tempo" class="tab-panel">
+  <div class="section-title">Registro de Tempo de Estudos</div>
+  <div class="section-sub">Registre diariamente suas horas, questões respondidas, erros e acompanhe seu aproveitamento por disciplina.</div>
+
+  <div class="time-controls">
+    <label class="form-label" style="margin:0">Data:</label>
+    <input type="date" id="timeDate" style="width:160px" onchange="loadTimeTable()">
+    <button class="btn btn-primary btn-sm" onclick="saveTimeData()">💾 Salvar dia</button>
+    <button class="btn btn-ghost btn-sm" onclick="exportTime()">📥 Exportar CSV</button>
+  </div>
+
+  <div class="time-table-wrap">
+    <table class="time-table" id="timeTable">
+      <thead>
+        <tr>
+          <th>Disciplina</th>
+          <th>Horas (HH:MM)</th>
+          <th>Questões</th>
+          <th>Erros</th>
+          <th>% Acertos</th>
+          <th>Observações</th>
+        </tr>
+      </thead>
+      <tbody id="timeTableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="time-summary" id="timeSummary"></div>
+</div>
+
+</main>
+
+<!-- MODAL ADICIONAR TÓPICO -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <h3>Adicionar tópico</h3>
+    <div class="form-group">
+      <div class="form-label">Título do tópico *</div>
+      <input type="text" id="addTitle" placeholder="Ex: Lei de Okun — desemprego e crescimento">
+    </div>
+    <div class="form-row">
+      <div class="form-group" style="flex:1">
+        <div class="form-label">Matéria *</div>
+        <select id="addMateria" style="width:100%">
+          <option value="lp">Língua Portuguesa</option>
+          <option value="hi">História do Brasil</option>
+          <option value="hm">História Mundial</option>
+          <option value="geo">Geografia</option>
+          <option value="ing">Língua Inglesa</option>
+          <option value="pi">Política Internacional</option>
+          <option value="eco">Economia</option>
+          <option value="dir">Direito</option>
+          <option value="esp">Espanhol/Francês</option>
+        </select>
+      </div>
+      <div class="form-group" style="flex:1">
+        <div class="form-label">Incidência</div>
+        <select id="addInc" style="width:100%">
+          <option value="alta">Alta</option>
+          <option value="media">Média</option>
+          <option value="baixa">Baixa</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group" style="flex:1">
+        <div class="form-label">Semana</div>
+        <select id="addWeek" style="width:100%"></select>
+      </div>
+      <div class="form-group" style="flex:1">
+        <div class="form-label">Dia</div>
+        <select id="addDay" style="width:100%">
+          <option value="0">Segunda</option>
+          <option value="1">Terça</option>
+          <option value="2">Quarta</option>
+          <option value="3">Quinta</option>
+          <option value="4">Sexta</option>
+          <option value="5">Sábado</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Método preferido</div>
+      <select id="addMethod" style="width:100%">
+        <option value="">Não definido</option>
+        <option value="Questões">Questões</option>
+        <option value="Aula">Aula</option>
+        <option value="Leitura">Leitura</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeAddModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="addTopicFromModal()">Adicionar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR TÓPICO -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <h3>Editar tópico</h3>
+    <input type="hidden" id="editId">
+    <div class="form-group">
+      <div class="form-label">Título</div>
+      <input type="text" id="editTitle">
+    </div>
+    <div class="form-row">
+      <div class="form-group" style="flex:1">
+        <div class="form-label">Matéria</div>
+        <select id="editMateria" style="width:100%">
+          <option value="lp">Língua Portuguesa</option>
+          <option value="hi">História do Brasil</option>
+          <option value="hm">História Mundial</option>
+          <option value="geo">Geografia</option>
+          <option value="ing">Língua Inglesa</option>
+          <option value="pi">Política Internacional</option>
+          <option value="eco">Economia</option>
+          <option value="dir">Direito</option>
+          <option value="esp">Espanhol/Francês</option>
+        </select>
+      </div>
+      <div class="form-group" style="flex:1">
+        <div class="form-label">Incidência</div>
+        <select id="editInc" style="width:100%">
+          <option value="alta">Alta</option>
+          <option value="media">Média</option>
+          <option value="baixa">Baixa</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeEditModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveEdit()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DELETE -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <h4>Excluir tópico?</h4>
+    <p>Essa ação não pode ser desfeita.</p>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" onclick="closeConfirm()">Cancelar</button>
+      <button class="btn btn-danger" onclick="confirmDelete()">Excluir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   DADOS: MATÉRIAS + TÓPICOS DO EDITAL
+══════════════════════════════════════════ */
+const MATERIAS = {
+  lp:  { label: 'Língua Portuguesa', short: 'LP',  icon: '✍️',  phase: '1ª e 2ª', pontos2f: 100, color: '#3b82f6', cls: 'tag-lp',  dot: 'dot-lp'  },
+  ing: { label: 'Língua Inglesa',    short: 'ING', icon: '🇺🇸',  phase: '1ª e 2ª', pontos2f: 100, color: '#8b5cf6', cls: 'tag-ing', dot: 'dot-ing' },
+  hi:  { label: 'História do Brasil',short: 'HB',  icon: '🇧🇷',  phase: '1ª e 2ª', pontos2f: 100, color: '#f59e0b', cls: 'tag-hi',  dot: 'dot-hi'  },
+  hm:  { label: 'História Mundial',  short: 'HM',  icon: '🌍',  phase: '1ª',       pontos2f: 0,   color: '#ef4444', cls: 'tag-hm',  dot: 'dot-hm'  },
+  geo: { label: 'Geografia',         short: 'GEO', icon: '🗺️',  phase: '1ª e 2ª', pontos2f: 100, color: '#10b981', cls: 'tag-geo', dot: 'dot-geo' },
+  pi:  { label: 'Política Internacional', short: 'PI', icon: '🤝', phase: '1ª e 2ª', pontos2f: 100, color: '#06b6d4', cls: 'tag-pi', dot: 'dot-pi' },
+  eco: { label: 'Economia',          short: 'ECO', icon: '📈',  phase: '1ª e 2ª', pontos2f: 100, color: '#f97316', cls: 'tag-eco', dot: 'dot-eco' },
+  dir: { label: 'Direito',           short: 'DIR', icon: '⚖️',  phase: '1ª e 2ª', pontos2f: 100, color: '#ec4899', cls: 'tag-dir', dot: 'dot-dir' },
+  esp: { label: 'Espanhol/Francês',  short: 'ESP', icon: '💬',  phase: '2ª',       pontos2f: 100, color: '#a78bfa', cls: 'tag-esp', dot: 'dot-esp' },
+};
+
+// Tópicos do edital com incidência estimada
+const EDITAL_TOPICS = {
+  lp: [
+    { t:'Sistema gráfico: ortografia, acentuação e pontuação; legibilidade', inc:'alta' },
+    { t:'Morfossintaxe', inc:'alta' },
+    { t:'Semântica e vocabulário', inc:'alta' },
+    { t:'Compreensão, interpretação e análise crítica de textos', inc:'alta' },
+    { t:'Linguística, literatura e estilística: funções da linguagem; níveis e variação linguística', inc:'media' },
+    { t:'Gêneros e estilos textuais; textos literários e não literários', inc:'media' },
+    { t:'Denotação, conotação e figuras de linguagem', inc:'media' },
+    { t:'Estrutura textual: coerência e coesão', inc:'alta' },
+    { t:'Redação dissertativa: argumentação e progressão temática', inc:'alta' },
+    { t:'Defeitos de conteúdo: generalização, tautologia, paráfrase, contradição', inc:'media' },
+    { t:'Vícios de linguagem: coloquialismo, barbarismo, rebuscamento, redundância', inc:'media' },
+    { t:'Resumo: capacidade de síntese e concisão', inc:'alta' },
+  ],
+  ing: [
+    { t:'Compreensão de textos escritos em língua inglesa', inc:'alta' },
+    { t:'Itens gramaticais relevantes para compreensão semântica', inc:'alta' },
+    { t:'Redação em inglês: expressão avançada e domínio da gramática', inc:'alta' },
+    { t:'Versão PT→EN: fidelidade, registro, correção morfossintática e lexical', inc:'alta' },
+  ],
+  hi: [
+    { t:'Período colonial: configuração territorial e dimensões econômico-sociais', inc:'media' },
+    { t:'Processo de independência: movimentos emancipacionistas e constitucionalismo', inc:'media' },
+    { t:'Primeiro Reinado (1822-1831): Constituição de 1824, quadro político e exterior', inc:'media' },
+    { t:'Regência (1831-1840): Ato Adicional de 1834 e revoltas provinciais', inc:'media' },
+    { t:'Segundo Reinado: Estado centralizado, política externa, escravidão, crise monárquica', inc:'alta' },
+    { t:'Primeira República (1889-1930): oligarquia, economia agroexportadora, modernismo', inc:'alta' },
+    { t:'Política externa na Primeira República: Rio Branco, Haia, Grande Guerra, Liga das Nações', inc:'alta' },
+    { t:'Era Vargas (1930-1945): Estado Novo, industrialização, Segunda Guerra', inc:'alta' },
+    { t:'República Liberal (1945-1964): partidos, industrialização, política externa independente', inc:'alta' },
+    { t:'Regime Militar (1964-1985): pragmatismo responsável, relações exteriores, transição', inc:'alta' },
+    { t:'Processo democrático a partir de 1985: Constituição de 1988, globalização, política externa', inc:'alta' },
+    { t:'MERCOSUL e Brasil na ONU (pós-1985)', inc:'alta' },
+    { t:'Impactos tecnológicos e digitais nas transformações políticas e sociais do Brasil séc. XXI', inc:'media' },
+  ],
+  hm: [
+    { t:'Revolução Industrial ao capitalismo organizado (séc. XVIII-XX); fases do capitalismo', inc:'alta' },
+    { t:'Principais ideias econômicas: Fisiocracia, Liberalismo, Marxismo', inc:'alta' },
+    { t:'Crise de 1929, New Deal; prosperidade no pós-guerra; Welfare State e sua crise', inc:'alta' },
+    { t:'Pós-Fordismo e acumulação flexível', inc:'media' },
+    { t:'Revolução Francesa e revoluções burguesas; independências nas Américas', inc:'alta' },
+    { t:'Anarquismo, Socialismo; Revoluções na Rússia e China; Revolução Mexicana e Cubana', inc:'alta' },
+    { t:'Relações internacionais: Concerto Europeu, rivalidades coloniais, causas da Primeira GM', inc:'alta' },
+    { t:'14 pontos de Wilson; Paz de Versalhes; Liga das Nações', inc:'alta' },
+    { t:'Causas da Segunda Guerra; conferências de paz e ordem pós-guerra; ONU; Bretton Woods; Plano Marshall', inc:'alta' },
+    { t:'Guerra Fria: bipolaridade, détente, segunda Guerra Fria, crise soviética', inc:'alta' },
+    { t:'Colonialismo e Imperialismo: partilha da África/Ásia; descolonização; Bandung; Não Alinhamento', inc:'alta' },
+    { t:'EUA: expansão, Guerra de Secessão, Doutrina Monroe, política externa na América Latina', inc:'media' },
+    { t:'Pan-Americanismo, OEA, Tratado do Rio de Janeiro; integrações nas Américas', inc:'media' },
+    { t:'Grandes correntes ideológicas séc. XIX-XX: liberalismo, nacionalismo, fascismo, comunismo', inc:'alta' },
+    { t:'Construção dos Estados nacionais: Alemanha e Itália; ditaduras e fascismos', inc:'media' },
+    { t:'Vida cultural: romantismo, imperialismo cultural, vanguardas, modernismo, pós-modernidade', inc:'media' },
+    { t:'Relações internacionais no séc. XXI: paradigmas digitais, redes sociais e tecnologia', inc:'media' },
+  ],
+  geo: [
+    { t:'História da Geografia: correntes teóricas e pensamento geográfico', inc:'baixa' },
+    { t:'Geografia da população: distribuição espacial no Brasil e no mundo; indicadores de qualidade de vida', inc:'alta' },
+    { t:'Grandes movimentos migratórios internacionais e intranacionais', inc:'alta' },
+    { t:'Globalização e divisão internacional do trabalho; blocos econômicos', inc:'alta' },
+    { t:'Energia, logística e reordenamento territorial pós-fordista; disparidades regionais no Brasil', inc:'media' },
+    { t:'Geografia Agrária: agronegócio, estrutura fundiária e uso da terra no Brasil', inc:'media' },
+    { t:'Urbanização, metropolização e cidades-mundiais; dinâmica intraurbana', inc:'alta' },
+    { t:'Geografia Política: geopolítica, fronteiras, Estado e território', inc:'alta' },
+    { t:'Meio ambiente nas relações internacionais; biomas, domínios e ecossistemas brasileiros', inc:'alta' },
+    { t:'Política e gestão ambiental no Brasil', inc:'alta' },
+  ],
+  pi: [
+    { t:'Relações internacionais: conceitos, atores, instituições e paradigmas teóricos', inc:'alta' },
+    { t:'Política externa brasileira: evolução desde 1945, vertentes e linhas de ação', inc:'alta' },
+    { t:'Brasil e América do Sul: integração, MERCOSUL, UNASUL, IIRSA, COSIPLAN', inc:'alta' },
+    { t:'Argentina: política externa e relações com o Brasil', inc:'media' },
+    { t:'Relações do Brasil com os demais países do hemisfério', inc:'media' },
+    { t:'EUA: política externa e relações com o Brasil', inc:'alta' },
+    { t:'União Europeia: origens, evolução, estrutura, política externa e relações com o Brasil', inc:'alta' },
+    { t:'Rússia, China, Índia e Japão: políticas externas e relações com o Brasil', inc:'alta' },
+    { t:'África: política externa e relações com o Brasil', inc:'media' },
+    { t:'Oriente Médio: questão israelo-palestina; Síria, Iraque, Irã', inc:'alta' },
+    { t:'CPLP — Comunidade dos Países de Língua Portuguesa', inc:'media' },
+    { t:'Multilateralismo e ONU: conferências internacionais e órgãos multilaterais', inc:'alta' },
+    { t:'Desenvolvimento sustentável; pobreza e segurança alimentar', inc:'alta' },
+    { t:'Meio ambiente nas relações internacionais', inc:'alta' },
+    { t:'Direitos humanos e políticas de identidade: gênero, raça, religião', inc:'alta' },
+    { t:'Migrações internacionais; migrantes, refugiados e apátridas', inc:'alta' },
+    { t:'Comércio internacional, OMC e cadeias globais de suprimento', inc:'alta' },
+    { t:'Sistema financeiro internacional; desarmamento e não proliferação', inc:'media' },
+    { t:'Crimes de guerra, genocídio, Tribunal Penal Internacional', inc:'media' },
+    { t:'Terrorismo, narcotráfico, crime transnacional e crimes cibernéticos', inc:'media' },
+    { t:'Reforma da ONU; operações de paz', inc:'media' },
+    { t:'Sistema interamericano: OEA', inc:'media' },
+    { t:'Blocos econômicos, acordos comerciais e promoção comercial', inc:'alta' },
+    { t:'Segurança na política exterior do Brasil', inc:'media' },
+    { t:'G-20, IBAS, BRICS e cooperação Sul-Sul', inc:'alta' },
+    { t:'Cooperação e diplomacia da saúde', inc:'media' },
+  ],
+  eco: [
+    { t:'Demanda do consumidor: preferências, equilíbrio, curva de demanda, elasticidades', inc:'alta' },
+    { t:'Oferta do produtor: fatores de produção, função de produção, elasticidade da oferta', inc:'alta' },
+    { t:'Tipos de mercados: concorrência perfeita, monopólio, oligopólio', inc:'alta' },
+    { t:'Bens públicos, bens rivais, recursos comuns, externalidades', inc:'media' },
+    { t:'Contabilidade Nacional: renda e produto; teorias clássica e keynesiana; agregados', inc:'alta' },
+    { t:'Contas externas: balanço de pagamentos, indicadores de liquidez e solvência', inc:'alta' },
+    { t:'Economia do Setor Público e Política Fiscal: gastos, receitas, dívida pública', inc:'alta' },
+    { t:'Modelo IS-LM-BP', inc:'alta' },
+    { t:'Teoria e Política Monetária: funções da moeda, tipos de inflação, Banco Central, instrumentos', inc:'alta' },
+    { t:'Política Monetária Não Convencional; regulação e supervisão bancária', inc:'media' },
+    { t:'Crescimento e Desenvolvimento Econômico: modelos Solow e Schumpeteriano', inc:'alta' },
+    { t:'Emprego e renda: tipos de desemprego, Lei de Okun, indicadores do mercado de trabalho', inc:'media' },
+    { t:'Teorias de Comércio Internacional: clássicas, neoclássicas, Prebisch/CEPAL', inc:'alta' },
+    { t:'Macroeconomia aberta: regimes cambiais, câmbio nominal/real, câmbio-juros-inflação', inc:'alta' },
+    { t:'Efeitos de tarifas, cotas, subsídios e política comercial', inc:'alta' },
+    { t:'História econômica brasileira: economia colonial, Primeira República, café', inc:'media' },
+    { t:'Industrialização por Substituição de Importações (ISI) e críticas', inc:'alta' },
+    { t:'Plano de Metas, PAEG, Milagre Econômico, I e II PND', inc:'alta' },
+    { t:'Crise dos anos 1980: inflação, planos de estabilização, debate sobre inflação', inc:'alta' },
+    { t:'Abertura econômica, Plano Real e economia brasileira nos anos 1990', inc:'alta' },
+    { t:'Bancos digitais, meios de pagamento e transição para o "dinheiro digital"', inc:'media' },
+  ],
+  dir: [
+    { t:'Normas jurídicas; personalidade jurídica', inc:'media' },
+    { t:'Constituição: conceito, classificações, primado, controle de constitucionalidade', inc:'alta' },
+    { t:'Estado: elementos, soberania, formas, sistemas de governo; Estado democrático de direito', inc:'alta' },
+    { t:'Organização e competências dos poderes no Direito Brasileiro', inc:'alta' },
+    { t:'Processo legislativo brasileiro', inc:'media' },
+    { t:'Direitos e garantias fundamentais no ordenamento jurídico brasileiro', inc:'alta' },
+    { t:'Administração Pública: princípios, atos administrativos, processo administrativo', inc:'alta' },
+    { t:'Licitações e contratos administrativos; responsabilidade civil do Estado', inc:'media' },
+    { t:'Servidor público: direitos, deveres, responsabilidades, improbidade e PAD', inc:'alta' },
+    { t:'Regime Jurídico do Serviço Exterior Brasileiro (Lei nº 11.440/2006)', inc:'alta' },
+    { t:'Finanças públicas e normas orçamentárias', inc:'media' },
+    { t:'Direito Internacional Público: desenvolvimento, relação com o Direito Interno', inc:'alta' },
+    { t:'Princípios das relações internacionais (art. 4º CF/1988)', inc:'alta' },
+    { t:'Direito Internacional Privado (LINDB); normas de conflito', inc:'media' },
+    { t:'Estado no DIP: surgimento, extinção, soberania, reconhecimento', inc:'alta' },
+    { t:'Território e formação do território brasileiro', inc:'media' },
+    { t:'Povo e Nacionalidade: aquisição, perda, dupla/múltipla; extradição; apátridas; asilo', inc:'alta' },
+    { t:'Jurisdição, relações diplomáticas e consulares; imunidades', inc:'alta' },
+    { t:'Fontes do DIP: tratados, costume, jus cogens, soft law, conflito de fontes', inc:'alta' },
+    { t:'Solução pacífica de controvérsias: mediação, CIJ, arbitragem', inc:'alta' },
+    { t:'Organizações internacionais: ONU, OEA; incorporação ao direito brasileiro', inc:'alta' },
+    { t:'Direito da Integração Regional: MERCOSUL e relação com o Direito brasileiro', inc:'alta' },
+    { t:'Uso da força; segurança coletiva; operações de paz; desarmamento', inc:'alta' },
+    { t:'Direito Internacional dos Direitos Humanos: sistemas convencionais, SIDH', inc:'alta' },
+    { t:'Direito Internacional Humanitário; Direitos dos Refugiados; refúgio no Brasil', inc:'alta' },
+    { t:'Direito Penal Internacional; TPI', inc:'media' },
+    { t:'Direito do Comércio Internacional: OMC, acordos, OSD', inc:'alta' },
+    { t:'Direito Internacional do Meio Ambiente; Direito Internacional do Mar; TIDM', inc:'alta' },
+    { t:'Direito Internacional do Trabalho: OIT, convenções, supervisão normativa', inc:'media' },
+    { t:'Áreas além da jurisdição exclusiva dos Estados; cooperação jurídica internacional', inc:'media' },
+  ],
+  esp: [
+    { t:'Resumo em espanhol: capacidade de síntese, registro culto', inc:'alta' },
+    { t:'Versão PT→ESP: fidelidade, registro, correção morfossintática e lexical', inc:'alta' },
+    { t:'Vocabulário e gramática espanhola avançada', inc:'media' },
+    { t:'Leitura de textos em espanhol sobre temas contemporâneos', inc:'media' },
+  ],
+};
+
+/* ══════════════════════════════════════════
+   CICLOS DE ESTUDO (26 semanas + ciclo modelo)
+══════════════════════════════════════════ */
+// Regra: LP e ECO nunca no mesmo dia; sáb = redação sempre; 3 disc max/dia; 5 dias/semana
+// Ciclo base de 6 semanas para variar; repete com tópicos avançando
+const BASE_CYCLES = [
+  // Ciclo A — Semanas 1,7,13,19,25
+  {
+    name: 'Ciclo A — Fundamentos',
+    days: [
+      { name: 'Segunda', subjects: ['lp','hi'],     time: '2h00', focus: 'LP + Hist. Brasil' },
+      { name: 'Terça',   subjects: ['hm','geo'],    time: '2h00', focus: 'Hist. Mundial + Geo' },
+      { name: 'Quarta',  subjects: ['eco','pi'],    time: '2h30', focus: 'Economia + Pol. Internacional' },
+      { name: 'Quinta',  subjects: ['ing','dir'],   time: '2h00', focus: 'Inglês + Direito' },
+      { name: 'Sexta',   subjects: ['pi','hi'],     time: '2h00', focus: 'Pol. Internacional + Hist. Brasil' },
+      { name: 'Sábado',  subjects: ['esp','lp'],    time: '2h00', focus: 'Redação (ESP/FR + LP)' },
+    ]
+  },
+  // Ciclo B — Semanas 2,8,14,20,26
+  {
+    name: 'Ciclo B — Ampliação',
+    days: [
+      { name: 'Segunda', subjects: ['eco','dir'],   time: '2h30', focus: 'Economia + Direito' },
+      { name: 'Terça',   subjects: ['lp','geo'],    time: '2h00', focus: 'LP + Geografia' },
+      { name: 'Quarta',  subjects: ['pi','hm'],     time: '2h00', focus: 'Pol. Internacional + Hist. Mundial' },
+      { name: 'Quinta',  subjects: ['hi','ing'],    time: '2h00', focus: 'Hist. Brasil + Inglês' },
+      { name: 'Sexta',   subjects: ['dir','geo'],   time: '2h00', focus: 'Direito + Geografia' },
+      { name: 'Sábado',  subjects: ['esp','ing'],   time: '2h00', focus: 'Redação (ESP/FR + ING)' },
+    ]
+  },
+  // Ciclo C — Semanas 3,9,15,21
+  {
+    name: 'Ciclo C — Consolidação',
+    days: [
+      { name: 'Segunda', subjects: ['hi','pi'],     time: '2h00', focus: 'Hist. Brasil + Pol. Internacional' },
+      { name: 'Terça',   subjects: ['eco','hm'],    time: '2h30', focus: 'Economia + Hist. Mundial' },
+      { name: 'Quarta',  subjects: ['lp','dir'],    time: '2h00', focus: 'LP + Direito' },
+      { name: 'Quinta',  subjects: ['geo','ing'],   time: '2h00', focus: 'Geografia + Inglês' },
+      { name: 'Sexta',   subjects: ['pi','eco'],    time: '2h30', focus: 'Pol. Internacional + Economia' },
+      { name: 'Sábado',  subjects: ['esp','hi'],    time: '2h00', focus: 'Redação (ESP/FR + HB)' },
+    ]
+  },
+  // Ciclo D — Semanas 4,10,16,22
+  {
+    name: 'Ciclo D — Aprofundamento',
+    days: [
+      { name: 'Segunda', subjects: ['dir','pi'],    time: '2h00', focus: 'Direito + Pol. Internacional' },
+      { name: 'Terça',   subjects: ['lp','hm'],     time: '2h00', focus: 'LP + Hist. Mundial' },
+      { name: 'Quarta',  subjects: ['eco','geo'],   time: '2h30', focus: 'Economia + Geografia' },
+      { name: 'Quinta',  subjects: ['hi','ing'],    time: '2h00', focus: 'Hist. Brasil + Inglês' },
+      { name: 'Sexta',   subjects: ['pi','dir'],    time: '2h00', focus: 'Pol. Internacional + Direito' },
+      { name: 'Sábado',  subjects: ['esp','geo'],   time: '2h00', focus: 'Redação (ESP/FR + GEO)' },
+    ]
+  },
+  // Ciclo E — Semanas 5,11,17,23
+  {
+    name: 'Ciclo E — Revisão A',
+    days: [
+      { name: 'Segunda', subjects: ['lp','geo'],    time: '2h00', focus: 'LP + Geografia' },
+      { name: 'Terça',   subjects: ['hi','dir'],    time: '2h00', focus: 'Hist. Brasil + Direito' },
+      { name: 'Quarta',  subjects: ['eco','ing'],   time: '2h30', focus: 'Economia + Inglês' },
+      { name: 'Quinta',  subjects: ['pi','hm'],     time: '2h00', focus: 'Pol. Internacional + Hist. Mundial' },
+      { name: 'Sexta',   subjects: ['dir','hi'],    time: '2h00', focus: 'Direito + Hist. Brasil' },
+      { name: 'Sábado',  subjects: ['esp','pi'],    time: '2h00', focus: 'Redação (ESP/FR + PI)' },
+    ]
+  },
+  // Ciclo F — Semanas 6,12,18,24
+  {
+    name: 'Ciclo F — Revisão B',
+    days: [
+      { name: 'Segunda', subjects: ['hi','hm'],     time: '2h00', focus: 'Hist. Brasil + Hist. Mundial' },
+      { name: 'Terça',   subjects: ['eco','pi'],    time: '2h30', focus: 'Economia + Pol. Internacional' },
+      { name: 'Quarta',  subjects: ['lp','ing'],    time: '2h00', focus: 'LP + Inglês' },
+      { name: 'Quinta',  subjects: ['geo','dir'],   time: '2h00', focus: 'Geografia + Direito' },
+      { name: 'Sexta',   subjects: ['pi','hi'],     time: '2h00', focus: 'Pol. Internacional + Hist. Brasil' },
+      { name: 'Sábado',  subjects: ['esp','eco'],   time: '2h00', focus: 'Redação (ESP/FR + ECO)' },
+    ]
+  },
+];
+
+/* ══════════════════════════════════════════
+   STATE
+══════════════════════════════════════════ */
+const START_DATE = new Date('2026-06-05'); // sexta
+const TOTAL_DAYS = 180;
+const TOTAL_WEEKS = 26; // 180 / ~7 ≈ 26 semanas
+
+let topics = JSON.parse(localStorage.getItem('cacd_topics') || '[]');
+let timeData = JSON.parse(localStorage.getItem('cacd_time') || '{}');
+let currentView = 'days';
+let currentWeek = 1;
+let deleteTargetId = null;
+
+/* ══════════════════════════════════════════
+   UTILIDADES
+══════════════════════════════════════════ */
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+
+function addDays(date, n) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + n);
+  return d;
+}
+
+function weekStart(weekNum) { // 1-indexed
+  // semana 1 começa na sexta 05/06
+  // dia 0 = sex, 1 = sab, 2 = seg, 3 = ter, 4 = qua, 5 = qui, 6 = sex(2), 7 = sab(2)
+  // Segunda da semana 1 = 2 dias depois de 05/06 = 07/06
+  const offset = (weekNum - 1) * 7 + 2; // +2 para chegar à segunda
+  return addDays(START_DATE, offset);
+}
+
+function fmtDate(d) {
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+}
+
+function daysLeft() {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const end = addDays(START_DATE, TOTAL_DAYS);
+  const diff = Math.max(0, Math.round((end - today) / 86400000));
+  return diff;
+}
+
+function saveTopics() {
+  localStorage.setItem('cacd_topics', JSON.stringify(topics));
+}
+
+/* ══════════════════════════════════════════
+   INIT
+══════════════════════════════════════════ */
+function init() {
+  document.getElementById('daysRemaining').textContent = daysLeft() + ' dias';
+
+  // populate week selects
+  const ws = document.getElementById('weekSelect');
+  const wa = document.getElementById('addWeek');
+  for (let i = 1; i <= TOTAL_WEEKS; i++) {
+    const s = weekStart(i);
+    const e = addDays(s, 5);
+    const label = `Semana ${i} (${fmtDate(s)} – ${fmtDate(e)})`;
+    ws.innerHTML += `<option value="${i}">${label}</option>`;
+    wa.innerHTML += `<option value="${i}">${label}</option>`;
+  }
+
+  // set today's date in time tab
+  document.getElementById('timeDate').value = new Date().toISOString().split('T')[0];
+
+  // If no topics yet, generate defaults
+  if (topics.length === 0) generateDefaultTopics();
+
+  buildMatTabs();
+  buildCycles();
+  renderWeek();
+  updateStats();
+  loadTimeTable();
+}
+
+/* ══════════════════════════════════════════
+   GENERATE DEFAULT TOPICS
+══════════════════════════════════════════ */
+function generateDefaultTopics() {
+  const DAY_NAMES = ['Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+  // For each topic in edital, assign to a week/day based on cycle
+  let topicQueues = {};
+  for (const mat in EDITAL_TOPICS) {
+    topicQueues[mat] = [...EDITAL_TOPICS[mat]];
+  }
+
+  for (let w = 1; w <= TOTAL_WEEKS; w++) {
+    const cycleIdx = (w - 1) % 6;
+    const cycle = BASE_CYCLES[cycleIdx];
+    cycle.days.forEach((day, di) => {
+      day.subjects.forEach(mat => {
+        if (topicQueues[mat] && topicQueues[mat].length > 0) {
+          const tp = topicQueues[mat].shift();
+          topics.push({
+            id: uid(),
+            title: tp.t,
+            materia: mat,
+            inc: tp.inc,
+            week: w,
+            day: di,
+            status: 'pendente',
+            method: '',
+          });
+        }
+      });
+    });
+  }
+  saveTopics();
+}
+
+/* ══════════════════════════════════════════
+   TABS
+══════════════════════════════════════════ */
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  event.target.classList.add('active');
+  if (name === 'stats') updateStats();
+  if (name === 'tempo') loadTimeTable();
+}
+
+/* ══════════════════════════════════════════
+   PLANEJAMENTO SEMANAL
+══════════════════════════════════════════ */
+const DAY_NAMES = ['Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+
+function renderWeek() {
+  currentWeek = parseInt(document.getElementById('weekSelect').value);
+  if (currentView === 'days') renderDays();
+  else renderKanban();
+}
+
+function setView(v) {
+  currentView = v;
+  document.getElementById('viewDays').classList.toggle('active', v==='days');
+  document.getElementById('viewKanban').classList.toggle('active', v==='kanban');
+  document.getElementById('daysView').style.display = v==='days' ? 'grid' : 'none';
+  document.getElementById('kanbanView').classList.toggle('active', v==='kanban');
+  if (v === 'days') renderDays();
+  else renderKanban();
+}
+
+function renderDays() {
+  const grid = document.getElementById('daysView');
+  grid.innerHTML = '';
+  const ws = weekStart(currentWeek);
+
+  DAY_NAMES.forEach((name, di) => {
+    const date = addDays(ws, di);
+    const dayTopics = topics.filter(t => t.week === currentWeek && t.day === di);
+
+    const col = document.createElement('div');
+    col.className = 'day-col';
+    col.dataset.day = di;
+    col.addEventListener('dragover', e => { e.preventDefault(); col.classList.add('drag-over'); });
+    col.addEventListener('dragleave', () => col.classList.remove('drag-over'));
+    col.addEventListener('drop', e => dropDay(e, di));
+
+    col.innerHTML = `
+      <div class="day-header">
+        <span class="day-name">${name}</span>
+        <span class="day-date">${fmtDate(date)}</span>
+      </div>
+      <div class="day-body" id="day-body-${di}">
+        ${dayTopics.map(t => topicCardHTML(t)).join('')}
+      </div>
+    `;
+    grid.appendChild(col);
+  });
+
+  attachDragEvents();
+}
+
+function topicCardHTML(t) {
+  const m = MATERIAS[t.materia] || {};
+  const statusOpts = ['pendente','iniciado','revisar','finalizado'].map(s =>
+    `<option value="${s}" ${t.status===s?'selected':''}>${s.charAt(0).toUpperCase()+s.slice(1)}</option>`
+  ).join('');
+  const methodOpts = ['','Questões','Aula','Leitura'].map(s =>
+    `<option value="${s}" ${t.method===s?'selected':''}>${s||'Método…'}</option>`
+  ).join('');
+
+  return `<div class="topic-card status-${t.status}" id="tc-${t.id}" draggable="true"
+    ondragstart="dragStart(event,'${t.id}')">
+    <div class="topic-tags">
+      <span class="tag ${m.cls||''}"><span class="dot ${m.dot||''}"></span>${m.short||t.materia}</span>
+      <span class="tag tag-inc-${t.inc}">${t.inc.toUpperCase()}</span>
+    </div>
+    <div class="topic-title">${t.title}</div>
+    <div class="topic-controls">
+      <select class="status-sel" onchange="changeStatus('${t.id}',this.value)">${statusOpts}</select>
+      <select class="method-sel" onchange="changeMethod('${t.id}',this.value)">${methodOpts}</select>
+      <div class="topic-actions">
+        <button class="icon-btn" onclick="openEditModal('${t.id}')" title="Editar">✏️</button>
+        <button class="icon-btn delete" onclick="askDelete('${t.id}')" title="Excluir">🗑</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function attachDragEvents() {
+  document.querySelectorAll('.topic-card').forEach(card => {
+    card.addEventListener('dragstart', e => {
+      const id = card.id.replace('tc-','');
+      e.dataTransfer.setData('text/plain', id);
+      card.classList.add('dragging');
+    });
+    card.addEventListener('dragend', () => card.classList.remove('dragging'));
+  });
+}
+
+function dragStart(e, id) {
+  e.dataTransfer.setData('text/plain', id);
+}
+
+function dropDay(e, di) {
+  e.preventDefault();
+  const id = e.dataTransfer.getData('text/plain');
+  const t = topics.find(x => x.id === id);
+  if (t) { t.day = di; t.week = currentWeek; saveTopics(); renderDays(); updateStats(); }
+  document.querySelectorAll('.day-col').forEach(c => c.classList.remove('drag-over'));
+}
+
+/* Kanban view */
+function renderKanban() {
+  const statuses = ['pendente','iniciado','revisar','finalizado'];
+  const wTopics = topics.filter(t => t.week === currentWeek);
+  statuses.forEach(s => {
+    const body = document.getElementById('k-'+s);
+    const cnt  = document.getElementById('k-cnt-'+s);
+    const filtered = wTopics.filter(t => t.status === s);
+    cnt.textContent = filtered.length;
+    body.innerHTML = filtered.map(t => topicCardHTML(t)).join('');
+  });
+  attachDragEvents();
+}
+
+function dropKanban(e, status) {
+  e.preventDefault();
+  const id = e.dataTransfer.getData('text/plain');
+  const t = topics.find(x => x.id === id);
+  if (t) { t.status = status; saveTopics(); renderKanban(); updateStats(); }
+  document.querySelectorAll('.kanban-body').forEach(b => b.classList.remove('drag-over'));
+}
+
+function changeStatus(id, val) {
+  const t = topics.find(x => x.id === id);
+  if (t) { t.status = val; saveTopics(); updateStats(); }
+  const card = document.getElementById('tc-'+id);
+  if (card) {
+    card.className = 'topic-card status-' + val;
+  }
+}
+
+function changeMethod(id, val) {
+  const t = topics.find(x => x.id === id);
+  if (t) { t.method = val; saveTopics(); }
+}
+
+/* ══════════════════════════════════════════
+   MODALS
+══════════════════════════════════════════ */
+function openAddModal() {
+  document.getElementById('addTitle').value = '';
+  document.getElementById('addWeek').value = currentWeek;
+  document.getElementById('addModal').classList.add('open');
+}
+function closeAddModal() {
+  document.getElementById('addModal').classList.remove('open');
+}
+function addTopicFromModal() {
+  const title = document.getElementById('addTitle').value.trim();
+  if (!title) { alert('Informe o título do tópico.'); return; }
+  topics.push({
+    id: uid(),
+    title,
+    materia: document.getElementById('addMateria').value,
+    inc: document.getElementById('addInc').value,
+    week: parseInt(document.getElementById('addWeek').value),
+    day: parseInt(document.getElementById('addDay').value),
+    status: 'pendente',
+    method: document.getElementById('addMethod').value,
+  });
+  saveTopics(); closeAddModal(); renderWeek(); updateStats();
+}
+
+function openEditModal(id) {
+  const t = topics.find(x => x.id === id);
+  if (!t) return;
+  document.getElementById('editId').value = id;
+  document.getElementById('editTitle').value = t.title;
+  document.getElementById('editMateria').value = t.materia;
+  document.getElementById('editInc').value = t.inc;
+  document.getElementById('editModal').classList.add('open');
+}
+function closeEditModal() {
+  document.getElementById('editModal').classList.remove('open');
+}
+function saveEdit() {
+  const id = document.getElementById('editId').value;
+  const t = topics.find(x => x.id === id);
+  if (t) {
+    t.title   = document.getElementById('editTitle').value.trim();
+    t.materia = document.getElementById('editMateria').value;
+    t.inc     = document.getElementById('editInc').value;
+    saveTopics(); closeEditModal(); renderWeek(); updateStats();
+  }
+}
+
+function askDelete(id) {
+  deleteTargetId = id;
+  document.getElementById('confirmOverlay').classList.add('open');
+}
+function closeConfirm() {
+  deleteTargetId = null;
+  document.getElementById('confirmOverlay').classList.remove('open');
+}
+function confirmDelete() {
+  if (deleteTargetId) {
+    topics = topics.filter(t => t.id !== deleteTargetId);
+    saveTopics(); closeConfirm(); renderWeek(); updateStats();
+  }
+}
+
+/* ══════════════════════════════════════════
+   CICLOS
+══════════════════════════════════════════ */
+function buildCycles() {
+  const grid = document.getElementById('cyclesGrid');
+  grid.innerHTML = '';
+
+  for (let w = 1; w <= TOTAL_WEEKS; w++) {
+    const cycleIdx = (w - 1) % 6;
+    const cycle = BASE_CYCLES[cycleIdx];
+    const ws = weekStart(w);
+    const we = addDays(ws, 5);
+
+    const card = document.createElement('div');
+    card.className = 'cycle-card';
+    card.innerHTML = `
+      <div class="cycle-header">
+        <div>
+          <div class="cycle-num">Semana ${w}</div>
+          <div class="cycle-title">${cycle.name}</div>
+        </div>
+        <div class="cycle-range">${fmtDate(ws)} – ${fmtDate(we)}</div>
+      </div>
+      <div class="cycle-body">
+        ${cycle.days.map((d,i) => `
+          <div class="cycle-day">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span class="cycle-day-name">${d.name}</span>
+              <span class="cycle-time">${d.time}</span>
+            </div>
+            <div class="cycle-subjects">
+              ${d.subjects.map(s => `<span class="tag ${MATERIAS[s].cls}">${MATERIAS[s].short}</span>`).join('')}
+            </div>
+            <div style="font-size:11px;color:var(--text3)">${d.focus}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    grid.appendChild(card);
+  }
+}
+
+/* ══════════════════════════════════════════
+   MATÉRIAS
+══════════════════════════════════════════ */
+function buildMatTabs() {
+  const tabsEl = document.getElementById('matTabs');
+  const panelsEl = document.getElementById('matPanels');
+  tabsEl.innerHTML = '';
+  panelsEl.innerHTML = '';
+
+  Object.entries(MATERIAS).forEach(([key, mat], idx) => {
+    const active = idx === 0 ? 'active' : '';
+
+    const btn = document.createElement('button');
+    btn.className = `mat-tab-btn ${active}`;
+    btn.style.background = active ? mat.color : '';
+    btn.textContent = mat.short + ' ' + mat.icon;
+    btn.onclick = function() {
+      document.querySelectorAll('.mat-tab-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
+      document.querySelectorAll('.mat-panel').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+      this.style.background = mat.color;
+      document.getElementById('mp-'+key).classList.add('active');
+    };
+    tabsEl.appendChild(btn);
+
+    const topics_list = (EDITAL_TOPICS[key] || []).map((tp, i) => `
+      <div class="topic-row">
+        <div class="topic-num">${i+1}.</div>
+        <div class="topic-row-text">
+          <div class="topic-row-title">${tp.t}</div>
+          <div class="topic-row-tags">
+            <span class="tag tag-inc-${tp.inc}">${tp.inc === 'alta' ? '🔴 Alta' : tp.inc === 'media' ? '🟡 Média' : '⚪ Baixa'} incidência</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    const panel = document.createElement('div');
+    panel.className = `mat-panel ${active}`;
+    panel.id = 'mp-'+key;
+    panel.innerHTML = `
+      <div class="mat-header">
+        <div class="mat-icon" style="background:${mat.color}22">${mat.icon}</div>
+        <div class="mat-info">
+          <h3>${mat.label}</h3>
+          <p>Fases: ${mat.phase} · Pontuação 2ª fase: ${mat.pontos2f > 0 ? mat.pontos2f + ' pts' : 'N/A (só 1ª fase)'}</p>
+          <div class="mat-badges">
+            <span class="tag" style="background:${mat.color}22;color:${mat.color};border:1px solid ${mat.color}44">${mat.short}</span>
+            <span class="tag tag-inc-alta">${(EDITAL_TOPICS[key]||[]).filter(t=>t.inc==='alta').length} tópicos alta incidência</span>
+            <span class="tag tag-inc-media">${(EDITAL_TOPICS[key]||[]).filter(t=>t.inc==='media').length} tópicos média incidência</span>
+            <span class="tag tag-inc-baixa">${(EDITAL_TOPICS[key]||[]).filter(t=>t.inc==='baixa').length} tópicos baixa incidência</span>
+          </div>
+        </div>
+      </div>
+      <div class="topics-list">${topics_list}</div>
+    `;
+    panelsEl.appendChild(panel);
+  });
+}
+
+/* ══════════════════════════════════════════
+   ESTATÍSTICAS
+══════════════════════════════════════════ */
+function updateStats() {
+  const total = topics.length;
+  const fin = topics.filter(t => t.status === 'finalizado').length;
+  const rev = topics.filter(t => t.status === 'revisar').length;
+  const ini = topics.filter(t => t.status === 'iniciado').length;
+  const pct = total > 0 ? Math.round(fin/total*100) : 0;
+
+  document.getElementById('s-total').textContent = total;
+  document.getElementById('s-fin').textContent = fin;
+  document.getElementById('s-rev').textContent = rev;
+  document.getElementById('s-ini').textContent = ini;
+  document.getElementById('s-pct').textContent = pct + '%';
+  document.getElementById('s-bar').style.width = pct + '%';
+
+  // Por matéria
+  const mp = document.getElementById('materiaProgress');
+  mp.innerHTML = '';
+  Object.entries(MATERIAS).forEach(([key, mat]) => {
+    const mt = topics.filter(t => t.materia === key);
+    const mf = mt.filter(t => t.status === 'finalizado').length;
+    const mp_pct = mt.length > 0 ? Math.round(mf/mt.length*100) : 0;
+    mp.innerHTML += `
+      <div class="mp-row">
+        <span class="mp-label">
+          <span class="tag ${mat.cls}" style="margin-right:4px">${mat.short}</span>
+          ${mat.label}
+        </span>
+        <div class="mp-bar-wrap"><div class="mp-bar" style="width:${mp_pct}%;background:${mat.color}"></div></div>
+        <span class="mp-pct">${mp_pct}%</span>
+      </div>
+    `;
+  });
+
+  // Stats kanban
+  ['pendente','iniciado','revisar','finalizado'].forEach(s => {
+    const el = document.getElementById('sk-'+s);
+    el.innerHTML = topics.filter(t => t.status === s).map(t => {
+      const m = MATERIAS[t.materia] || {};
+      return `<div class="stats-topic-item">
+        <span class="tag ${m.cls||''}" style="margin-bottom:4px">${m.short||t.materia}</span>
+        <div style="margin-top:3px">${t.title}</div>
+      </div>`;
+    }).join('');
+  });
+}
+
+/* ══════════════════════════════════════════
+   TEMPO DE ESTUDOS
+══════════════════════════════════════════ */
+const DISC_LIST = Object.entries(MATERIAS).map(([k,v]) => ({ key: k, label: v.label, cls: v.cls, short: v.short }));
+
+function loadTimeTable() {
+  const date = document.getElementById('timeDate').value;
+  const saved = timeData[date] || {};
+  const tbody = document.getElementById('timeTableBody');
+  tbody.innerHTML = '';
+
+  DISC_LIST.forEach(d => {
+    const s = saved[d.key] || {};
+    const horas = s.horas || '';
+    const q = s.questoes || '';
+    const erros = s.erros || '';
+    const pct = calcPct(q, erros);
+    const pctClass = pct === null ? '' : pct < 70 ? 'pct-red' : pct <= 80 ? 'pct-yellow' : 'pct-green';
+    const pctStr = pct === null ? '—' : pct + '%';
+
+    tbody.innerHTML += `
+      <tr>
+        <td><span class="tag ${d.cls}">${d.short}</span> ${d.label}</td>
+        <td><input type="text" id="t-h-${d.key}" placeholder="00:00" value="${horas}" onchange="recalcRow('${d.key}')"></td>
+        <td><input type="number" id="t-q-${d.key}" placeholder="0" min="0" value="${q}" onchange="recalcRow('${d.key}')"></td>
+        <td><input type="number" id="t-e-${d.key}" placeholder="0" min="0" value="${erros}" onchange="recalcRow('${d.key}')"></td>
+        <td class="pct-cell ${pctClass}" id="t-p-${d.key}">${pctStr}</td>
+        <td><input type="text" id="t-o-${d.key}" placeholder="Observações…" value="${s.obs||''}"></td>
+      </tr>
+    `;
+  });
+
+  renderTimeSummary(date);
+}
+
+function calcPct(q, erros) {
+  const qi = parseInt(q);
+  const ei = parseInt(erros);
+  if (!qi || isNaN(qi) || qi === 0) return null;
+  const acertos = qi - (isNaN(ei) ? 0 : ei);
+  return Math.round(acertos / qi * 100);
+}
+
+function recalcRow(key) {
+  const q = document.getElementById('t-q-'+key)?.value;
+  const e = document.getElementById('t-e-'+key)?.value;
+  const pct = calcPct(q, e);
+  const cell = document.getElementById('t-p-'+key);
+  if (!cell) return;
+  cell.textContent = pct === null ? '—' : pct + '%';
+  cell.className = 'pct-cell ' + (pct === null ? '' : pct < 70 ? 'pct-red' : pct <= 80 ? 'pct-yellow' : 'pct-green');
+}
+
+function saveTimeData() {
+  const date = document.getElementById('timeDate').value;
+  if (!date) { alert('Selecione uma data.'); return; }
+  const entry = {};
+  DISC_LIST.forEach(d => {
+    entry[d.key] = {
+      horas:    document.getElementById('t-h-'+d.key)?.value || '',
+      questoes: document.getElementById('t-q-'+d.key)?.value || '',
+      erros:    document.getElementById('t-e-'+d.key)?.value || '',
+      obs:      document.getElementById('t-o-'+d.key)?.value || '',
+    };
+  });
+  timeData[date] = entry;
+  localStorage.setItem('cacd_time', JSON.stringify(timeData));
+  renderTimeSummary(date);
+  alert('✅ Dados salvos!');
+}
+
+function renderTimeSummary(date) {
+  const saved = timeData[date] || {};
+  const summary = document.getElementById('timeSummary');
+
+  let totalMinutes = 0;
+  let totalQ = 0;
+  let totalE = 0;
+
+  DISC_LIST.forEach(d => {
+    const s = saved[d.key] || {};
+    if (s.horas) {
+      const parts = s.horas.split(':');
+      totalMinutes += (parseInt(parts[0])||0)*60 + (parseInt(parts[1])||0);
+    }
+    totalQ += parseInt(s.questoes)||0;
+    totalE += parseInt(s.erros)||0;
+  });
+
+  const h = Math.floor(totalMinutes/60);
+  const m = totalMinutes%60;
+  const gPct = calcPct(totalQ, totalE);
+
+  summary.innerHTML = `
+    <div class="stat-card">
+      <div class="stat-label">Horas do dia</div>
+      <div class="stat-value">${h}h${String(m).padStart(2,'0')}min</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Questões respondidas</div>
+      <div class="stat-value">${totalQ}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Aproveitamento geral</div>
+      <div class="stat-value ${gPct===null?'':gPct<70?'':'green'}" style="${gPct!==null&&gPct<70?'color:var(--pct-red,#f87171)':gPct!==null&&gPct<=80?'color:var(--c-revisar)':''}">${gPct===null?'—':gPct+'%'}</div>
+    </div>
+  `;
+}
+
+function exportTime() {
+  let csv = 'Data,Disciplina,Horas,Questoes,Erros,%Acertos,Obs\n';
+  Object.entries(timeData).forEach(([date, entry]) => {
+    DISC_LIST.forEach(d => {
+      const s = entry[d.key] || {};
+      const pct = calcPct(s.questoes, s.erros);
+      csv += `${date},${d.label},${s.horas||''},${s.questoes||''},${s.erros||''},${pct===null?'':pct+'%'},"${s.obs||''}"\n`;
+    });
+  });
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'cacd_tempo_estudos.csv'; a.click();
+}
+
+/* ══════════════════════════════════════════
+   START
+══════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
